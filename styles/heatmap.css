@@ -1,0 +1,45 @@
+:root {
+  --gh-level-0: #ebedf0;
+  --gh-level-1: #9be9a8;
+  --gh-level-2: #40c463;
+  --gh-level-3: #30a14e;
+  --gh-level-4: #216e39;
+  --gh-text: #6b7280;
+}
+
+.dark {
+  --gh-level-0: #161b22;
+  --gh-level-1: #0e4429;
+  --gh-level-2: #006d32;
+  --gh-level-3: #26a641;
+  --gh-level-4: #39d353;
+  --gh-text: #8b949e;
+}
+
+.react-calendar-heatmap {
+  width: 100%;
+}
+
+.react-calendar-heatmap .react-calendar-heatmap-day {
+  rx: 2px;
+  ry: 2px;
+}
+
+.react-calendar-heatmap .color-github-0 { fill: var(--gh-level-0); }
+.react-calendar-heatmap .color-github-1 { fill: var(--gh-level-1); }
+.react-calendar-heatmap .color-github-2 { fill: var(--gh-level-2); }
+.react-calendar-heatmap .color-github-3 { fill: var(--gh-level-3); }
+.react-calendar-heatmap .color-github-4 { fill: var(--gh-level-4); }
+
+.react-calendar-heatmap text {
+  font-size: 10px;
+  fill: var(--gh-text);
+  font-family: inherit;
+}
+
+/* Ensure the heatmap takes full width and maintains square-like proportions */
+.react-calendar-heatmap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
