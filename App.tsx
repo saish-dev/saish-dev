@@ -7,6 +7,7 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import GithubActivity from './components/GithubActivity';
+import AIChatBot from './components/AIChatBot';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<'home' | 'projects'>('home');
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         )}
         <Footer />
       </main>
+      <AIChatBot />
     </div>
   );
 };
