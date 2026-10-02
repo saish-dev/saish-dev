@@ -53,7 +53,7 @@ const Skills: React.FC = () => {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex gap-2 mb-8 overflow-x-auto sm:flex-wrap sm:overflow-visible -mx-6 px-6 sm:mx-0 sm:px-0 pb-2 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {categories.map((cat) => {
           const count = cat === 'All Skills' ? SKILLS.length : SKILLS.filter(s => s.category === cat).length;
           const isActive = activeCategory === cat;
@@ -62,7 +62,7 @@ const Skills: React.FC = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm border transition-all flex items-center gap-2.5 ${isActive
+              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-full text-sm border transition-all flex items-center gap-2.5 ${isActive
                 ? 'bg-primary/10 border-primary/25 text-primary'
                 : 'bg-transparent border-border text-secondary hover:border-primary/25 hover:text-primary'
                 }`}

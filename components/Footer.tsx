@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="py-12 border-t border-border mt-8 flex flex-col md:flex-row justify-between items-start md:items-end text-xs text-secondary gap-4">
+    <footer className="pt-12 pb-28 sm:pb-12 border-t border-border mt-8 flex flex-col md:flex-row justify-between items-start md:items-end text-xs text-secondary gap-4">
       <div className="space-y-1">
         <p>Developed by Saish</p>
         <p>© {new Date().getFullYear()} All rights reserved.</p>

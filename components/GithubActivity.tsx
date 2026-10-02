@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
 import '../styles/heatmap.css';
@@ -15,6 +15,12 @@ const GithubActivity: React.FC = () => {
   const [totalContributions, setTotalContributions] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // On narrow screens show the most recent weeks first
+  useEffect(() => {
+    if (!loading && scrollRef.current) scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+  }, [loading]);
 
   useEffect(() => {
     const fetchGithubData = async () => {
@@ -55,7 +61,8 @@ const GithubActivity: React.FC = () => {
       </div>
 
       <div className="glass rounded-3xl p-6 sm:p-8">
-        <div className="w-full overflow-hidden">
+        <div ref={scrollRef} className="w-full overflow-x-auto pb-2">
+          <div className="min-w-[640px]">
           {loading ? (
             <div className="h-[140px] flex items-center justify-center text-secondary text-sm bg-muted rounded-md border border-border">
               Loading activity...
@@ -71,14 +78,15 @@ const GithubActivity: React.FC = () => {
               values={contributions}
               classForValue={getClassName}
               showWeekdayLabels={false}
-              tooltipDataAttrs={(value: any) => {
+              tooltipDataAttrs={((value: any) => {
                 if (!value || !value.date) return null;
                 return {
                   'data-tip': `${value.date}: ${value.count} contributions`,
                 };
-              }}
+              }) as any}
             />
           )}
+          </div>
         </div>
 
         {/* Footer */}

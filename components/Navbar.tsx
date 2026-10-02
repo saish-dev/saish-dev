@@ -38,13 +38,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange }) => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 pointer-events-none bg-gradient-to-b from-background via-background/80 to-transparent">
+    <nav className="fixed top-0 left-0 right-0 z-40 pointer-events-none bg-gradient-to-b from-background via-background/90 to-transparent">
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
         <span className="font-serif italic font-semibold text-lg pointer-events-auto hidden sm:block">
           {PROFILE_DATA.name}
         </span>
 
-        <div className="glass pointer-events-auto flex gap-1 p-1 rounded-full shadow-lg shadow-black/5 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
+        <div className="glass bg-background/80 pointer-events-auto flex gap-1 p-1 rounded-full shadow-lg shadow-black/5 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
           {tabs.map((tab) => (
             <button
               key={tab.id}

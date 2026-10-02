@@ -95,7 +95,7 @@ const AIChatBot: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
       {/* Chat Window */}
       <div
-        className={`pointer-events-auto glass bg-background/90 rounded-3xl shadow-2xl shadow-black/30 w-80 sm:w-96 overflow-hidden transition-all duration-300 origin-bottom-right transform mb-4 ${isOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-10 pointer-events-none h-0'
+        className={`pointer-events-auto glass bg-background/90 rounded-3xl shadow-2xl shadow-black/30 w-[calc(100vw-3rem)] max-w-sm sm:w-96 overflow-hidden transition-all duration-300 origin-bottom-right transform mb-4 ${isOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-10 pointer-events-none h-0'
           }`}
       >
         {/* Header */}
@@ -122,7 +122,7 @@ const AIChatBot: React.FC = () => {
         </div>
 
         {/* Messages */}
-        <div className="h-80 overflow-y-auto p-4 space-y-4">
+        <div className="h-[min(20rem,45vh)] overflow-y-auto p-4 space-y-4">
           {messages.map((msg) => (
             <div
               key={msg.id}

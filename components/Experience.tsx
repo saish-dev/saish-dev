@@ -21,7 +21,7 @@ const Experience: React.FC = () => {
           const open = openIds.includes(job.id);
           const bullets = open ? job.description : job.description.slice(0, VISIBLE);
           return (
-            <article key={job.id} className="glass rounded-3xl p-6 sm:p-8 transition-colors hover:border-primary/20">
+            <article key={job.id} className="glass rounded-3xl p-5 sm:p-8 transition-colors hover:border-primary/20">
               <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
                 <div className="flex items-center gap-4">
                   <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shrink-0 border border-border">
