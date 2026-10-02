@@ -18,9 +18,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-primary selection:bg-secondary/20 transition-colors duration-300">
+    <div className="min-h-screen text-primary transition-colors duration-300">
       <Navbar currentView={currentView} onViewChange={handleViewChange} />
-      <main className="max-w-5xl mx-auto px-6">
+      <main className="max-w-6xl mx-auto px-6">
         {currentView === 'home' ? (
           <div className="animate-fade-in">
             <Hero />

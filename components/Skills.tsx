@@ -46,11 +46,14 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-12">
-      <h2 className="text-3xl font-serif italic text-primary mb-8">Skills</h2>
+    <section id="skills" className="py-16">
+      <div className="flex items-end justify-between mb-8 gap-4">
+        <h2 className="font-light text-4xl tracking-tight">Skills</h2>
+        <span className="text-sm text-secondary">{SKILLS.length} tools</span>
+      </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="flex flex-wrap gap-2 mb-8">
         {categories.map((cat) => {
           const count = cat === 'All Skills' ? SKILLS.length : SKILLS.filter(s => s.category === cat).length;
           const isActive = activeCategory === cat;
@@ -59,16 +62,16 @@ const Skills: React.FC = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium border transition-all flex items-center gap-2.5 ${isActive
-                ? 'bg-[#1a1a1a] border-[#333] text-white ring-1 ring-[#444]'
-                : 'bg-transparent border-[#222] text-[#888] hover:border-[#444] hover:text-[#ccc]'
+              className={`px-4 py-2 rounded-full text-sm border transition-all flex items-center gap-2.5 ${isActive
+                ? 'bg-primary/10 border-primary/25 text-primary'
+                : 'bg-transparent border-border text-secondary hover:border-primary/25 hover:text-primary'
                 }`}
             >
-              <span className={isActive ? 'text-white' : 'text-[#666]'}>
+              <span className={isActive ? 'text-accent' : 'text-secondary'}>
                 {getCategoryIcon(cat)}
               </span>
               <span>{cat}</span>
-              <span className={`ml-0.5 px-2 py-0.5 rounded-full text-[10px] ${isActive ? 'bg-[#333] text-white' : 'bg-[#1a1a1a] text-[#555]'
+              <span className={`ml-0.5 px-2 py-0.5 rounded-full text-[10px] ${isActive ? 'bg-primary/15 text-primary' : 'bg-muted text-secondary'
                 }`}>
                 {count}
               </span>
@@ -82,12 +85,12 @@ const Skills: React.FC = () => {
         {filteredSkills.map((skill) => (
           <div
             key={skill.name}
-            className="flex items-center gap-3 px-4 py-3 bg-surface border border-border rounded-lg hover:border-secondary transition-colors group"
+            className="glass flex items-center gap-3 pl-3 pr-4 py-2.5 rounded-xl hover:border-primary/25 transition-colors group"
           >
-            <div className="w-5 h-5 shrink-0 transition-all">
+            <div className="w-7 h-7 p-1 shrink-0 rounded-md bg-white/90">
               {skill.icon && <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />}
             </div>
-            <span className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
+            <span className="text-sm text-secondary group-hover:text-primary transition-colors">
               {skill.name}
             </span>
           </div>

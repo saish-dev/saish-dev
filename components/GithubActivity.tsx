@@ -49,12 +49,12 @@ const GithubActivity: React.FC = () => {
   oneYearAgo.setFullYear(today.getFullYear() - 1);
 
   return (
-    <section className="py-12 animate-fade-in">
-      <div className="mb-6">
-        <h2 className="text-3xl font-serif italic text-primary">Github Activity</h2>
+    <section className="py-16 animate-fade-in">
+      <div className="mb-8">
+        <h2 className="font-light text-4xl tracking-tight">GitHub activity</h2>
       </div>
 
-      <div className="border border-border rounded-xl p-6 bg-surface sm:p-8 shadow-sm">
+      <div className="glass rounded-3xl p-6 sm:p-8">
         <div className="w-full overflow-hidden">
           {loading ? (
             <div className="h-[140px] flex items-center justify-center text-secondary text-sm bg-muted rounded-md border border-border">
@@ -96,7 +96,7 @@ const GithubActivity: React.FC = () => {
               {[0, 1, 2, 3, 4].map(level => (
                 <div
                   key={level}
-                  className={`w-3 h-3 rounded-[2px] color-github-${level} heatmap-legend-item shadow-sm border border-white/5`}
+                  className={`w-3 h-3 rounded-[2px] color-github-${level} heatmap-legend-item border border-border`}
                 />
               ))}
             </div>

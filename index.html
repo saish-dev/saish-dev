@@ -5,34 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Saish | Software Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
             colors: {
-              background: 'var(--background)',
-              surface: 'var(--surface)',
-              primary: 'var(--primary)',
-              secondary: 'var(--secondary)',
-              border: 'var(--border)',
-              muted: 'var(--muted)',
+              background: 'rgb(var(--background) / <alpha-value>)',
+              primary: 'rgb(var(--primary) / <alpha-value>)',
+              secondary: 'rgb(var(--secondary) / <alpha-value>)',
+              accent: 'rgb(var(--accent) / <alpha-value>)',
+              accent2: 'rgb(var(--accent2) / <alpha-value>)',
+              surface: 'rgb(var(--primary) / 0.04)',
+              border: 'rgb(var(--primary) / 0.1)',
+              muted: 'rgb(var(--primary) / 0.06)',
             },
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              serif: ['Newsreader', 'serif'],
+              sans: ['Geist', 'system-ui', 'sans-serif'],
+              serif: ['Fraunces', 'Georgia', 'serif'],
+              mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
             },
             animation: {
-              'fade-in': 'fadeIn 0.5s ease-out',
-              'slide-up': 'slideUp 0.5s ease-out',
+              'fade-in': 'fadeIn 0.6s ease-out',
+              'slide-up': 'slideUp 0.6s cubic-bezier(.2,.7,.2,1)',
             },
             keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
+              fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
               slideUp: {
-                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '0%': { transform: 'translateY(16px)', opacity: '0' },
                 '100%': { transform: 'translateY(0)', opacity: '1' },
               },
             },
@@ -41,55 +44,89 @@
       };
     </script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
-      
+      /* Obsidian design tokens (space-separated RGB so Tailwind opacity modifiers work) */
       :root {
-        --background: #ffffff;
-        --surface: #f9fafb;
-        --primary: #0a0a0a;
-        --secondary: #52525b;
-        --border: #e5e7eb;
-        --muted: rgba(0, 0, 0, 0.05);
+        --background: 246 247 251;
+        --primary: 12 16 32;
+        --secondary: 91 100 120;
+        --accent: 59 99 214;
+        --accent2: 124 77 218;
+        --glow-a: rgba(59, 99, 214, 0.12);
+        --glow-b: rgba(124, 77, 218, 0.08);
+        --card-bg: rgba(255, 255, 255, 0.7);
       }
 
       .dark {
-        --background: #050505;
-        --surface: #0f0f0f;
-        --primary: #ffffff;
-        --secondary: #a1a1aa;
-        --border: #27272a;
-        --muted: rgba(255, 255, 255, 0.05);
-      }
-      
-      html {
-        font-size: 14px;
-      }
-      
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: var(--background);
-        color: var(--primary);
-        line-height: 1.5;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-      
-      h1, h2, h3, h4, .serif {
-        font-family: 'Newsreader', serif;
+        --background: 7 9 13;
+        --primary: 238 241 246;
+        --secondary: 141 150 168;
+        --accent: 138 180 255;
+        --accent2: 199 166 255;
+        --glow-a: rgba(138, 180, 255, 0.2);
+        --glow-b: rgba(199, 166, 255, 0.13);
+        --card-bg: rgba(255, 255, 255, 0.04);
       }
 
+      html { font-size: 15px; }
+
+      body {
+        font-family: 'Geist', system-ui, sans-serif;
+        background-color: rgb(var(--background));
+        color: rgb(var(--primary));
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      /* Ambient light behind the page */
+      body::before, body::after {
+        content: "";
+        position: fixed;
+        z-index: 0;
+        pointer-events: none;
+        border-radius: 50%;
+      }
+      body::before {
+        top: -180px; right: -160px; width: 720px; height: 620px;
+        background: radial-gradient(closest-side, var(--glow-a), transparent 70%);
+      }
+      body::after {
+        top: 420px; left: -240px; width: 600px; height: 600px;
+        background: radial-gradient(closest-side, var(--glow-b), transparent 70%);
+      }
+      #root { position: relative; z-index: 1; }
+
+      h1, h2, h3, h4, .serif { font-family: 'Fraunces', Georgia, serif; }
+
+      .glass {
+        background: var(--card-bg);
+        border: 1px solid rgb(var(--primary) / 0.1);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+      .grad-text {
+        background: linear-gradient(100deg, rgb(var(--accent)), rgb(var(--accent2)));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgb(var(--accent));
+      }
+
+      ::selection { background: rgb(var(--accent) / 0.3); }
+
       /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: var(--background);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: var(--border);
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: var(--secondary);
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: rgb(var(--background)); }
+      ::-webkit-scrollbar-thumb { background: rgb(var(--primary) / 0.15); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: rgb(var(--secondary)); }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
       }
     </style>
 </head>

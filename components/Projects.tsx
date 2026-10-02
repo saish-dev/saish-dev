@@ -11,21 +11,22 @@ const Projects: React.FC = () => {
     : PROJECTS.filter(p => p.category === activeTab);
 
   return (
-    <section id="projects" className="pt-32 pb-16 min-h-[80vh]">
+    <section id="projects" className="pt-36 pb-16 min-h-[80vh]">
       <div className="flex flex-col items-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-serif italic text-primary mb-6 text-center">
-          Proof of Work <span className="text-2xl text-secondary not-italic font-sans align-middle ml-1">({PROJECTS.length})</span>
+        <div className="eyebrow mb-4">Selected work · {PROJECTS.length}</div>
+        <h2 className="font-light text-5xl md:text-6xl tracking-tight mb-6 text-center">
+          Proof of <em className="grad-text pr-1">work</em>
         </h2>
         <p className="text-secondary mb-10 text-center max-w-lg text-lg">
           My projects and work across different technologies and domains.
         </p>
 
-        <div className="flex bg-muted p-1 rounded-full border border-border">
+        <div className="glass flex p-1 rounded-full">
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === cat ? 'bg-background text-primary shadow-sm' : 'text-secondary hover:text-primary hover:bg-background/50'
+              className={`px-5 sm:px-6 py-2 rounded-full text-sm transition-all duration-300 ${activeTab === cat ? 'bg-primary/10 text-primary' : 'text-secondary hover:text-primary'
                 }`}
             >
               {cat}
@@ -37,9 +38,9 @@ const Projects: React.FC = () => {
       <div className="grid grid-cols-1 gap-12">
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project) => (
-            <div key={project.id} className="group bg-surface border border-border rounded-3xl overflow-hidden hover:border-secondary transition-all duration-500 shadow-sm">
+            <div key={project.id} className="group glass rounded-[28px] overflow-hidden hover:border-primary/25 transition-all duration-500">
               {/* Image Section */}
-              <div className="relative aspect-[16/9] bg-muted overflow-hidden border-b border-border flex items-center justify-center">
+              <div className="relative aspect-[16/9] bg-gradient-to-br from-accent/20 via-accent2/10 to-transparent overflow-hidden border-b border-border flex items-center justify-center">
                 {project.image ? (
                   <>
                     <img
@@ -51,13 +52,13 @@ const Projects: React.FC = () => {
                   </>
                 ) : (
                   <div className="flex flex-col items-center gap-4 transition-transform duration-700 group-hover:scale-110">
-                    <div className="w-16 h-16 rounded-2xl bg-surface border border-border flex items-center justify-center text-secondary shadow-sm">
+                    <div className="w-16 h-16 rounded-2xl glass flex items-center justify-center text-accent">
                       {project.category === 'Backend' && <div className="text-secondary opacity-80"><Server size={32} /></div>}
                       {project.category === 'Frontend' && <div className="text-secondary opacity-80"><Layout size={32} /></div>}
                       {project.category === 'Fullstack' && <div className="text-secondary opacity-80"><Globe size={32} /></div>}
                       {!['Backend', 'Frontend', 'Fullstack'].includes(project.category) && <div className="text-secondary opacity-80"><Code size={32} /></div>}
                     </div>
-                    <span className="text-[10px] uppercase tracking-widest font-bold text-secondary opacity-50">{project.category} Project</span>
+                    <span className="font-mono text-[11px] uppercase tracking-widest text-secondary">{project.category} Project</span>
                   </div>
                 )}
               </div>
@@ -66,7 +67,7 @@ const Projects: React.FC = () => {
               <div className="p-8">
                 <div className="flex items-center gap-3 mb-4">
                   {project.techStack.slice(0, 3).map(tech => (
-                    <span key={tech} className="px-3 py-1 text-[10px] font-bold tracking-widest text-secondary bg-muted rounded-full uppercase border border-border">
+                    <span key={tech} className="px-3 py-1 text-[11px] tracking-widest text-secondary rounded-full uppercase border border-border font-mono">
                       {tech}
                     </span>
                   ))}
@@ -75,7 +76,7 @@ const Projects: React.FC = () => {
                   )}
                 </div>
 
-                <h3 className="text-2xl font-serif font-medium text-primary mb-3">{project.title}</h3>
+                <h3 className="text-4xl font-light tracking-tight mb-3">{project.title}</h3>
                 <p className="text-secondary leading-relaxed mb-8 max-w-2xl">
                   {project.description}
                 </p>
@@ -86,20 +87,20 @@ const Projects: React.FC = () => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-background text-sm font-semibold hover:opacity-90 transition-opacity"
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-background text-sm font-medium hover:opacity-90 transition-opacity"
                     >
                       View Project Live <ArrowUpRight size={16} />
                     </a>
                   ) : (
-                    <div className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-muted text-secondary/40 text-sm font-semibold border border-border cursor-default">
-                      Not Available <ArrowUpRight size={16} className="opacity-20" />
+                    <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border text-secondary text-sm cursor-default">
+                      Not Available <ArrowUpRight size={16} className="opacity-40" />
                     </div>
                   )}
 
                   {project.github && (
                     <a
                       href={project.github}
-                      className="p-2.5 bg-muted rounded-full text-secondary hover:text-primary hover:bg-border transition-all border border-border"
+                      className="p-2.5 rounded-full text-secondary hover:text-primary hover:bg-muted transition-all border border-border"
                       aria-label="View Source"
                     >
                       <Github size={20} />
@@ -110,11 +111,11 @@ const Projects: React.FC = () => {
             </div>
           ))
         ) : (
-          <div className="flex flex-col items-center justify-center py-20 px-6 text-center bg-surface border border-dashed border-border rounded-3xl animate-fade-in">
+          <div className="flex flex-col items-center justify-center py-20 px-6 text-center border border-dashed border-border rounded-3xl animate-fade-in">
             <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-secondary mb-6">
               <Code size={32} className="opacity-50" />
             </div>
-            <h3 className="text-xl font-serif text-primary mb-2">Projects Coming Soon</h3>
+            <h3 className="text-2xl font-light mb-2">Projects Coming Soon</h3>
             <p className="text-secondary max-w-xs mx-auto text-sm">
               I'm currently learning and working on some exciting {activeTab.toLowerCase()} projects. Check back soon for updates!
             </p>

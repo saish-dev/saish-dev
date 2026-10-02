@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
+import { PROFILE_DATA } from '../constants';
 
 interface NavbarProps {
   currentView: 'home' | 'projects';
@@ -10,7 +11,6 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange }) => {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    // Check local storage or system preference
     if (localStorage.theme === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
@@ -32,37 +32,46 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange }) => {
     }
   };
 
+  const tabs: { id: 'home' | 'projects'; label: string }[] = [
+    { id: 'home', label: 'Home' },
+    { id: 'projects', label: 'Projects' },
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border transition-colors duration-300">
-      <div className="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex space-x-6">
-          <button
-            onClick={() => onViewChange('home')}
-            className={`text-sm font-medium transition-colors border-b ${currentView === 'home'
-                ? 'text-primary border-primary'
-                : 'text-secondary border-transparent hover:text-primary'
-              } pb-0.5`}
-          >
-            Home
-          </button>
-          <button
-            onClick={() => onViewChange('projects')}
-            className={`text-sm font-medium transition-colors border-b ${currentView === 'projects'
-                ? 'text-primary border-primary'
-                : 'text-secondary border-transparent hover:text-primary'
-              } pb-0.5`}
-          >
-            Projects
-          </button>
+    <nav className="fixed top-0 left-0 right-0 z-40 pointer-events-none bg-gradient-to-b from-background via-background/80 to-transparent">
+      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
+        <span className="font-serif italic font-semibold text-lg pointer-events-auto hidden sm:block">
+          {PROFILE_DATA.name}
+        </span>
+
+        <div className="glass pointer-events-auto flex gap-1 p-1 rounded-full shadow-lg shadow-black/5 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => onViewChange(tab.id)}
+              className={`px-4 sm:px-5 py-1.5 rounded-full text-sm transition-colors ${currentView === tab.id
+                ? 'bg-primary/10 text-primary'
+                : 'text-secondary hover:text-primary'
+                }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        <button
-          onClick={toggleTheme}
-          className="text-secondary hover:text-primary transition-colors p-2 rounded-full hover:bg-muted"
-          aria-label="Toggle Theme"
-        >
-          {isDark ? <Moon size={18} /> : <Sun size={18} />}
-        </button>
+        <div className="flex items-center gap-3 pointer-events-auto">
+          <span className="hidden md:flex items-center gap-2 text-xs text-secondary">
+            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shadow-[0_0_10px_#2dd4bf]"></span>
+            {PROFILE_DATA.availability}
+          </span>
+          <button
+            onClick={toggleTheme}
+            className="glass text-secondary hover:text-primary transition-colors p-2.5 rounded-full"
+            aria-label="Toggle Theme"
+          >
+            {isDark ? <Moon size={16} /> : <Sun size={16} />}
+          </button>
+        </div>
       </div>
     </nav>
   );
