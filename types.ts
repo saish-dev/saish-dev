@@ -6,6 +6,7 @@ export interface Project {
   link: string;
   github?: string;
   image: string;
+  screens?: string[]; // phone screenshots, shown side by side instead of a single image
   featured: boolean;
   category: string; // 'Frontend' | 'Fullstack' | 'System' etc.
 }

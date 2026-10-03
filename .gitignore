@@ -28,3 +28,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw NexSplit screenshots (resized copies live in public/projects/nexsplit)
+/Nexsplit/

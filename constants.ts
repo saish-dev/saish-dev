@@ -155,6 +155,39 @@ export const PROJECTS: Project[] = [
     featured: true,
     category: "Backend"
   },
+  {
+    id: 2,
+    title: "Mishti Bakehouse",
+    description: "Ordering website for a home bakery. Customers browse the menu, configure items, and submit an order that lands on the baker's WhatsApp, or send a custom-cake inquiry. The baker manages menu items and gallery photos herself through a password-protected admin page, with Supabase storage and WhatsApp Cloud API notifications behind it.",
+    techStack: ["NEXT.JS", "TYPESCRIPT", "TAILWIND", "SUPABASE"],
+    link: "https://mishti-bakehouse.vercel.app",
+    image: "projects/mishti-bakehouse.jpg",
+    featured: true,
+    category: "Fullstack"
+  },
+  {
+    id: 3,
+    title: "NexSplit",
+    description: "AI-powered iOS bill-splitting app. Scan a receipt and Google Gemini extracts the items, prices and quantities. Review them, assign items to people or split shared costs evenly, organise friends into groups, and track who owes what. Built natively with SwiftUI and SwiftData.",
+    techStack: ["SWIFTUI", "SWIFTDATA", "GEMINI"],
+    link: "",
+    github: "https://github.com/saish-dev/NexSplit",
+    image: "",
+    screens: ["projects/nexsplit/home.png", "projects/nexsplit/scan.png", "projects/nexsplit/split.png"],
+    featured: true,
+    category: "Mobile"
+  },
+  {
+    id: 4,
+    title: "Finance Planner",
+    description: "Personal cashflow and net-worth planner that replaces a multi-tab Excel model. Enter income, expenses, loans, investments and insurance once, and it projects bank, investment, PF and loan balances month by month to any year you pick. Money is handled with Decimal math throughout, and the projection engine is a pure function of the database.",
+    techStack: ["PYTHON", "DJANGO", "POSTGRESQL"],
+    link: "",
+    github: "https://github.com/saish-dev/finance-planner",
+    image: "projects/finance-planner.jpg",
+    featured: false,
+    category: "Fullstack"
+  },
   // {
   //   id: 2,
   //   title: "Uni Notes",

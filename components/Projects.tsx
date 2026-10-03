@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { PROJECTS } from '../constants';
-import { ArrowUpRight, Github, Server, Layout, Globe, Code } from 'lucide-react';
+import { ArrowUpRight, Github, Server, Layout, Globe, Code, Smartphone } from 'lucide-react';
 
 const Projects: React.FC = () => {
-  const categories = ['All', 'Backend', 'Frontend', 'Fullstack'];
+  const categories = ['All', 'Backend', 'Frontend', 'Fullstack', 'Mobile'];
   const [activeTab, setActiveTab] = useState('All');
 
   const filteredProjects = activeTab === 'All'
@@ -21,12 +21,12 @@ const Projects: React.FC = () => {
           My projects and work across different technologies and domains.
         </p>
 
-        <div className="glass flex p-1 rounded-full">
+        <div className="glass flex p-1 rounded-full max-w-full overflow-x-auto">
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
-              className={`px-5 sm:px-6 py-2 rounded-full text-sm transition-all duration-300 ${activeTab === cat ? 'bg-primary/10 text-primary' : 'text-secondary hover:text-primary'
+              className={`px-4 sm:px-6 py-2 rounded-full text-sm transition-all duration-300 ${activeTab === cat ? 'bg-primary/10 text-primary' : 'text-secondary hover:text-primary'
                 }`}
             >
               {cat}
@@ -41,7 +41,22 @@ const Projects: React.FC = () => {
             <div key={project.id} className="group glass rounded-[28px] overflow-hidden hover:border-primary/25 transition-all duration-500">
               {/* Image Section */}
               <div className="relative aspect-[16/9] bg-gradient-to-br from-accent/20 via-accent2/10 to-transparent overflow-hidden border-b border-border flex items-center justify-center">
-                {project.image ? (
+                {project.screens && project.screens.length > 0 ? (
+                  <div className="absolute inset-0 flex items-start justify-center gap-[3%] pt-[6%] px-[4%] overflow-hidden">
+                    {project.screens.map((src, i) => {
+                      const center = i === Math.floor(project.screens!.length / 2);
+                      return (
+                        <img
+                          key={src}
+                          src={src}
+                          alt={`${project.title} screen ${i + 1}`}
+                          loading="lazy"
+                          className={`w-[28%] max-w-[260px] h-auto drop-shadow-2xl transition-transform duration-700 group-hover:-translate-y-2 ${center ? 'mt-0' : 'mt-[5%] opacity-95'}`}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : project.image ? (
                   <>
                     <img
                       src={project.image}
@@ -56,7 +71,8 @@ const Projects: React.FC = () => {
                       {project.category === 'Backend' && <div className="text-secondary opacity-80"><Server size={32} /></div>}
                       {project.category === 'Frontend' && <div className="text-secondary opacity-80"><Layout size={32} /></div>}
                       {project.category === 'Fullstack' && <div className="text-secondary opacity-80"><Globe size={32} /></div>}
-                      {!['Backend', 'Frontend', 'Fullstack'].includes(project.category) && <div className="text-secondary opacity-80"><Code size={32} /></div>}
+                      {project.category === 'Mobile' && <div className="text-secondary opacity-80"><Smartphone size={32} /></div>}
+                      {!['Backend', 'Frontend', 'Fullstack', 'Mobile'].includes(project.category) && <div className="text-secondary opacity-80"><Code size={32} /></div>}
                     </div>
                     <span className="font-mono text-[11px] uppercase tracking-widest text-secondary">{project.category} Project</span>
                   </div>
