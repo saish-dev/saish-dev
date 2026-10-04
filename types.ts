@@ -4,7 +4,8 @@ export interface Project {
   description: string;
   techStack: string[];
   link: string;
-  github?: string;
+  github?: string; // source repo (backend repo when githubFrontend is set)
+  githubFrontend?: string;
   image: string;
   screens?: string[]; // phone screenshots, shown side by side instead of a single image
   featured: boolean;

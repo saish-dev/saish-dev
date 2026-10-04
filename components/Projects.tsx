@@ -113,15 +113,21 @@ const Projects: React.FC = () => {
                     </div>
                   )}
 
-                  {project.github && (
+                  {[
+                    { href: project.github, label: project.githubFrontend ? 'Backend' : 'Source' },
+                    { href: project.githubFrontend, label: 'Frontend' },
+                  ].map(({ href, label }) => href && (
                     <a
-                      href={project.github}
-                      className="p-2.5 rounded-full text-secondary hover:text-primary hover:bg-muted transition-all border border-border"
-                      aria-label="View Source"
+                      key={label}
+                      href={href}
+                      className="flex items-center gap-2 p-2.5 rounded-full text-secondary hover:text-primary hover:bg-muted transition-all border border-border"
+                      aria-label={`View ${label} Source`}
+                      title={`${label} repo`}
                     >
                       <Github size={20} />
+                      {project.githubFrontend && <span className="text-sm pr-1">{label}</span>}
                     </a>
-                  )}
+                  ))}
                 </div>
               </div>
             </div>

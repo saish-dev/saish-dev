@@ -148,12 +148,13 @@ export const PROJECTS: Project[] = [
     id: 1,
     title: "NexTracker",
     description: "NexTracker is an enterprise-grade productivity and work-tracking system that enables employees to log daily tasks, managers to monitor team productivity, and admins to gain organization-wide analytics through secure, role-based access.",
-    techStack: ["PYTHON", "FASTAPI"],
+    techStack: ["PYTHON", "FASTAPI", "REACT", "TYPESCRIPT", "TAILWIND"],
     link: "",
     github: "https://github.com/Nexverse-Intelligence/nex-tracker-backend",
+    githubFrontend: "https://github.com/saish-dev/nex-tracker-frontend",
     image: "projects/nextracker.jpg",
     featured: true,
-    category: "Backend"
+    category: "Fullstack"
   },
   {
     id: 2,
