@@ -151,7 +151,7 @@ export const PROJECTS: Project[] = [
     techStack: ["PYTHON", "FASTAPI"],
     link: "",
     github: "https://github.com/Nexverse-Intelligence/nex-tracker-backend",
-    image: "",
+    image: "projects/nextracker.jpg",
     featured: true,
     category: "Backend"
   },
