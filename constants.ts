@@ -189,6 +189,39 @@ export const PROJECTS: Project[] = [
     featured: false,
     category: "Fullstack"
   },
+  {
+    id: 5,
+    title: "Lensque",
+    description: "Photography portfolio with a home page of latest frames, a filterable work gallery by category, and per-photo pages with prev/next. Enquiries go straight to Instagram DMs. An admin area lets me upload, categorise, publish and feature photos, with uploads going directly to Supabase storage and row-level security ensuring visitors only see published work.",
+    techStack: ["NEXT.JS", "TYPESCRIPT", "SUPABASE"],
+    link: "https://lensque.vercel.app",
+    github: "https://github.com/saish-dev/lensque_",
+    image: "projects/lensque.jpg",
+    featured: false,
+    category: "Fullstack"
+  },
+  {
+    id: 6,
+    title: "TAG - The Art of Gifting",
+    description: "Website for a handmade gifting studio in Goa that makes invitations, favours and hampers for weddings, corporate and events. Visitors browse products by kind and collection, get a budget estimate for their occasion, and place orders over Instagram DM.",
+    techStack: ["NEXT.JS", "TYPESCRIPT", "CSS"],
+    link: "https://the-art-of-gifting.vercel.app/",
+    github: "https://github.com/saish-dev/TAG",
+    image: "projects/tag.jpg",
+    featured: false,
+    category: "Frontend"
+  },
+  {
+    id: 7,
+    title: "Resource Management",
+    description: "Internal resource-allocation app for assigning people to projects. Covers allocation locks, bench tracking and capacity planning, with a 100% capacity ceiling enforced by the API inside a database transaction. Status and utilisation are derived rather than stored. A pnpm monorepo with a Next.js web app, a NestJS API and shared Zod schemas.",
+    techStack: ["NEXT.JS", "NESTJS", "TYPESCRIPT", "POSTGRESQL"],
+    link: "",
+    github: "https://github.com/saish-dev/resource-management",
+    image: "projects/resource-management.jpg",
+    featured: false,
+    category: "Fullstack"
+  },
   // {
   //   id: 2,
   //   title: "Uni Notes",
