@@ -1,49 +1,22 @@
 import React, { useState } from 'react';
-import { SKILLS } from '../constants';
+import { SKILLS, SKILL_CATEGORIES } from '../constants';
 
-import {
-  FolderCode,
-  Globe,
-  Database,
-  Wrench,
-  Cloud,
-  Brain,
-  FileCode,
-  ShieldCheck,
-  Settings2,
-  GitBranch,
-  Layers,
-  Cpu,
-  Zap,
-  Layout,
-  MessageSquare
-} from 'lucide-react';
+import { Brain, Cloud, Cpu, Database, Layers, Layout } from 'lucide-react';
 import { SkillCategory } from '../types';
 
+const CATEGORY_ICONS: Record<SkillCategory, React.ReactNode> = {
+  'Backend & APIs': <Cpu size={15} />,
+  'AI & Agents': <Brain size={15} />,
+  'Data & Messaging': <Database size={15} />,
+  'Frontend': <Layout size={15} />,
+  'DevOps & Tooling': <Cloud size={15} />,
+  'Architecture & Process': <Layers size={15} />,
+};
+
 const Skills: React.FC = () => {
-  const categories = ['All Skills', ...Array.from(new Set(SKILLS.map(s => s.category)))];
-  const [activeCategory, setActiveCategory] = useState('All Skills');
+  const [activeCategory, setActiveCategory] = useState<SkillCategory>(SKILL_CATEGORIES[0]);
 
-  const filteredSkills = activeCategory === 'All Skills'
-    ? SKILLS
-    : SKILLS.filter(s => s.category === activeCategory);
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'All Skills': return <Layers size={14} />;
-      case 'Programming Languages': return <FileCode size={14} />;
-      case 'Backend': return <Cpu size={14} />;
-      case 'Frontend': return <Layout size={14} />;
-      case 'AI': return <Brain size={14} />;
-      case 'Databases': return <Database size={14} />;
-      case 'Asynchronous & Messaging': return <Zap size={14} />;
-      case 'Cloud & DevOps': return <Cloud size={14} />;
-      case 'API & Communication': return <MessageSquare size={14} />;
-      case 'Architecture & Design': return <Layers size={14} />;
-      case 'Version Control & Project Management': return <GitBranch size={14} />;
-      default: return <FolderCode size={14} />;
-    }
-  };
+  const activeSkills = SKILLS.filter(s => s.category === activeCategory);
 
   return (
     <section id="skills" className="py-16">
@@ -52,49 +25,65 @@ const Skills: React.FC = () => {
         <span className="text-sm text-secondary">{SKILLS.length} tools</span>
       </div>
 
-      {/* Filters */}
-      <div className="flex gap-2 mb-8 overflow-x-auto sm:flex-wrap sm:overflow-visible -mx-6 px-6 sm:mx-0 sm:px-0 pb-2 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {categories.map((cat) => {
-          const count = cat === 'All Skills' ? SKILLS.length : SKILLS.filter(s => s.category === cat).length;
-          const isActive = activeCategory === cat;
+      <div className="grid lg:grid-cols-[260px_minmax(0,1fr)] gap-6 lg:gap-10 items-start">
+        {/* Category list: a horizontal scroller on mobile, a vertical list on desktop */}
+        <div
+          role="group"
+          aria-label="Skill categories"
+          className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible -mx-6 px-6 lg:mx-0 lg:px-0 pb-2 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {SKILL_CATEGORIES.map((cat) => {
+            const count = SKILLS.filter(s => s.category === cat).length;
+            const isActive = activeCategory === cat;
 
-          return (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`shrink-0 whitespace-nowrap px-4 py-2 rounded-full text-sm border transition-all flex items-center gap-2.5 ${isActive
-                ? 'bg-primary/10 border-primary/25 text-primary'
-                : 'bg-transparent border-border text-secondary hover:border-primary/25 hover:text-primary'
-                }`}
-            >
-              <span className={isActive ? 'text-accent' : 'text-secondary'}>
-                {getCategoryIcon(cat)}
-              </span>
-              <span>{cat}</span>
-              <span className={`ml-0.5 px-2 py-0.5 rounded-full text-[10px] ${isActive ? 'bg-primary/15 text-primary' : 'bg-muted text-secondary'
-                }`}>
-                {count}
-              </span>
-            </button>
-          );
-        })}
-      </div>
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                aria-pressed={isActive}
+                className={`shrink-0 whitespace-nowrap lg:w-full px-4 py-2.5 rounded-xl text-sm border transition-all flex items-center gap-3 ${isActive
+                  ? 'bg-primary/10 border-primary/25 text-primary'
+                  : 'bg-transparent border-transparent text-secondary hover:text-primary hover:bg-primary/5'
+                  }`}
+              >
+                <span className={isActive ? 'text-accent' : 'text-secondary'}>
+                  {CATEGORY_ICONS[cat]}
+                </span>
+                <span>{cat}</span>
+                <span className={`ml-auto px-2 py-0.5 rounded-full text-[10px] ${isActive ? 'bg-primary/15 text-primary' : 'bg-muted text-secondary'
+                  }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-      {/* Grid */}
-      <div className="flex flex-wrap gap-2 sm:gap-3">
-        {filteredSkills.map((skill) => (
-          <div
-            key={skill.name}
-            className="glass flex items-center gap-3 pl-3 pr-4 py-2.5 rounded-xl hover:border-primary/25 transition-colors group"
-          >
-            <div className="w-7 h-7 p-1 shrink-0 rounded-md bg-white/90">
-              {skill.icon && <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />}
-            </div>
-            <span className="text-sm text-secondary group-hover:text-primary transition-colors">
-              {skill.name}
-            </span>
+        {/* Selected category */}
+        <div className="glass rounded-2xl p-6 sm:p-8 min-h-[300px] lg:min-h-[420px]">
+          <div className="flex items-baseline justify-between mb-6 gap-4">
+            <h3 className="grad-text italic font-light text-2xl sm:text-3xl tracking-tight pr-1">{activeCategory}</h3>
+            <span className="font-mono text-xs text-secondary shrink-0">{activeSkills.length} tools</span>
           </div>
-        ))}
+
+          <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-3">
+            {activeSkills.map((skill) => (
+              <div
+                key={skill.name}
+                className="glass flex items-center gap-3 p-2.5 pr-4 rounded-xl hover:border-primary/25 transition-colors group"
+              >
+                <div className="w-9 h-9 p-1.5 shrink-0 rounded-lg bg-white/90 flex items-center justify-center">
+                  {skill.icon
+                    ? <img src={skill.icon} alt="" className="w-full h-full object-contain" />
+                    : <span className="font-semibold text-sm text-slate-700">{skill.name[0]}</span>}
+                </div>
+                <span className="text-sm text-secondary group-hover:text-primary transition-colors">
+                  {skill.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

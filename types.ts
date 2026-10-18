@@ -23,16 +23,12 @@ export interface Experience {
 }
 
 export type SkillCategory =
-  | 'Programming Languages'
-  | 'Backend'
+  | 'Backend & APIs'
+  | 'AI & Agents'
+  | 'Data & Messaging'
   | 'Frontend'
-  | 'AI'
-  | 'Databases'
-  | 'Cloud & DevOps'
-  | 'API & Communication'
-  | 'Architecture & Design'
-  | 'Asynchronous & Messaging'
-  | 'Version Control & Project Management';
+  | 'DevOps & Tooling'
+  | 'Architecture & Process';
 
 
 export interface Skill {

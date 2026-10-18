@@ -1,4 +1,4 @@
-import { Project, Experience, Skill, SocialLink } from './types';
+import { Project, Experience, Skill, SkillCategory, SocialLink } from './types';
 
 export const PROFILE_DATA = {
   name: "Saish Naik",
@@ -21,62 +21,71 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { platform: "Instagram", url: "https://instagram.com/", icon: "Instagram" },
 ];
 
-export const SKILLS: Skill[] = [
-  // Programming Languages
-  { name: 'Python', category: 'Programming Languages', icon: '/Python.svg' },
-  { name: 'JavaScript', category: 'Programming Languages', icon: 'https://cdn.simpleicons.org/javascript/F7DF1E' },
+export const SKILL_CATEGORIES: SkillCategory[] = [
+  'Backend & APIs',
+  'AI & Agents',
+  'Data & Messaging',
+  'Frontend',
+  'DevOps & Tooling',
+  'Architecture & Process',
+];
 
-  // Backend
-  { name: 'Django', category: 'Backend', icon: 'https://cdn.simpleicons.org/django/092E20' },
-  { name: 'Django REST Framework', category: 'Backend', icon: '/DRF.svg' },
-  { name: 'FastAPI', category: 'Backend', icon: 'https://cdn.simpleicons.org/fastapi/009688' },
-  { name: 'Flask', category: 'Backend', icon: 'https://cdn.simpleicons.org/flask/000000' },
+export const SKILLS: Skill[] = [
+  // Backend & APIs
+  { name: 'Python', category: 'Backend & APIs', icon: '/Python.svg' },
+  { name: 'Django', category: 'Backend & APIs', icon: 'https://cdn.simpleicons.org/django/092E20' },
+  { name: 'Django REST Framework', category: 'Backend & APIs', icon: '/DRF.svg' },
+  { name: 'FastAPI', category: 'Backend & APIs', icon: 'https://cdn.simpleicons.org/fastapi/009688' },
+  { name: 'Flask', category: 'Backend & APIs', icon: 'https://cdn.simpleicons.org/flask/000000' },
+  { name: 'NestJS', category: 'Backend & APIs', icon: 'https://cdn.simpleicons.org/nestjs/E0234E' },
+  { name: 'gRPC', category: 'Backend & APIs', icon: '/gRPC.svg' },
+  { name: 'Swagger', category: 'Backend & APIs', icon: 'https://cdn.simpleicons.org/swagger/85EA2D' },
+  { name: 'Postman', category: 'Backend & APIs', icon: 'https://cdn.simpleicons.org/postman/FF6C37' },
+
+  // AI & Agents
+  { name: 'LangChain', category: 'AI & Agents', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
+  { name: 'LangGraph', category: 'AI & Agents', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
+  { name: 'LangSmith', category: 'AI & Agents', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
+  { name: 'Google AI Studio', category: 'AI & Agents', icon: '/aistudio.svg' },
+  { name: 'OpenAI Agent Builder', category: 'AI & Agents', icon: '/openai.svg' },
+  { name: 'MCP', category: 'AI & Agents', icon: '/mcp.svg' },
+  { name: 'Claude Code', category: 'AI & Agents', icon: 'https://cdn.simpleicons.org/claude/D97757' },
+  { name: 'Higgsfield', category: 'AI & Agents', icon: '/Higgsfield.png' },
+
+  // Data & Messaging
+  { name: 'PostgreSQL', category: 'Data & Messaging', icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
+  { name: 'MongoDB', category: 'Data & Messaging', icon: 'https://cdn.simpleicons.org/mongodb/47A248' },
+  { name: 'SQLAlchemy', category: 'Data & Messaging', icon: 'https://cdn.simpleicons.org/sqlalchemy/D71F00' },
+  { name: 'DBeaver', category: 'Data & Messaging', icon: '/DBeaver.svg' },
+  { name: 'Apache Kafka', category: 'Data & Messaging', icon: 'https://cdn.simpleicons.org/apachekafka/231F20' },
+  { name: 'Celery', category: 'Data & Messaging', icon: 'https://cdn.simpleicons.org/celery/37814A' },
+  { name: 'Redis', category: 'Data & Messaging', icon: '/Redis.svg' },
 
   // Frontend
+  { name: 'JavaScript', category: 'Frontend', icon: 'https://cdn.simpleicons.org/javascript/F7DF1E' },
   { name: 'HTML', category: 'Frontend', icon: 'https://cdn.simpleicons.org/html5/E34F26' },
   { name: 'CSS', category: 'Frontend', icon: 'https://cdn.simpleicons.org/css/1572B6' },
   { name: 'Tailwind CSS', category: 'Frontend', icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4' },
+  { name: 'React', category: 'Frontend', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
+  { name: 'Next.js', category: 'Frontend', icon: 'https://cdn.simpleicons.org/nextdotjs/000000' },
 
-  // API & Communication
-  { name: 'gRPC', category: 'API & Communication', icon: '/gRPC.svg' },
-  { name: 'Swagger', category: 'API & Communication', icon: 'https://cdn.simpleicons.org/swagger/85EA2D' },
-  { name: 'Postman', category: 'API & Communication', icon: 'https://cdn.simpleicons.org/postman/FF6C37' },
+  // DevOps & Tooling
+  { name: 'Docker', category: 'DevOps & Tooling', icon: 'https://cdn.simpleicons.org/docker/2496ED' },
+  { name: 'Azure', category: 'DevOps & Tooling', icon: '/Azure.svg' },
+  { name: 'Git', category: 'DevOps & Tooling', icon: 'https://cdn.simpleicons.org/git/F05032' },
+  { name: 'GitHub', category: 'DevOps & Tooling', icon: 'https://cdn.simpleicons.org/github/181717' },
+  { name: 'Bitbucket', category: 'DevOps & Tooling', icon: 'https://cdn.simpleicons.org/bitbucket/0052CC' },
+  { name: 'GitLab', category: 'DevOps & Tooling', icon: 'https://cdn.simpleicons.org/gitlab/FC6D26' },
 
-  // Architecture & Design
-  { name: 'Microservices', category: 'Architecture & Design', icon: 'https://cdn.simpleicons.org/kubernetes/326CE5' },
-  { name: 'Monolithic Architecture', category: 'Architecture & Design', icon: 'https://cdn.simpleicons.org/serverfault/555555' },
-  { name: 'Database Design', category: 'Architecture & Design', icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
-
-  // Databases
-  { name: 'PostgreSQL', category: 'Databases', icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
-  { name: 'MongoDB', category: 'Databases', icon: 'https://cdn.simpleicons.org/mongodb/47A248' },
-  { name: 'SQLAlchemy', category: 'Databases', icon: 'https://cdn.simpleicons.org/sqlalchemy/D71F00' },
-  { name: 'DBeaver', category: 'Databases', icon: '/DBeaver.svg' },
-
-  // Asynchronous & Messaging
-  { name: 'Apache Kafka', category: 'Asynchronous & Messaging', icon: 'https://cdn.simpleicons.org/apachekafka/231F20' },
-  { name: 'Celery', category: 'Asynchronous & Messaging', icon: 'https://cdn.simpleicons.org/celery/37814A' },
-  { name: 'Redis', category: 'Asynchronous & Messaging', icon: '/Redis.svg' },
-
-  // Cloud & DevOps
-  { name: 'Docker', category: 'Cloud & DevOps', icon: 'https://cdn.simpleicons.org/docker/2496ED' },
-  { name: 'Azure', category: 'Cloud & DevOps', icon: '/Azure.svg' },
-
-  // AI
-  { name: 'LangChain', category: 'AI', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
-  { name: 'LangGraph', category: 'AI', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
-  { name: 'LangSmith', category: 'AI', icon: 'https://cdn.simpleicons.org/langchain/1C3C3C' },
-  { name: 'Google AI Studio', category: 'AI', icon: '/aistudio.svg' },
-  { name: 'OpenAI Agent Builder', category: 'AI', icon: '/openai.svg' },
-  { name: 'MCP', category: 'AI', icon: '/mcp.svg' },
-
-  // Version Control & Project Management
-  { name: 'Git', category: 'Version Control & Project Management', icon: 'https://cdn.simpleicons.org/git/F05032' },
-  { name: 'GitHub', category: 'Version Control & Project Management', icon: 'https://cdn.simpleicons.org/github/181717' },
-  { name: 'Bitbucket', category: 'Version Control & Project Management', icon: 'https://cdn.simpleicons.org/bitbucket/0052CC' },
-  { name: 'Jira', category: 'Version Control & Project Management', icon: 'https://cdn.simpleicons.org/jira/0052CC' },
-  { name: 'Confluence', category: 'Version Control & Project Management', icon: 'https://cdn.simpleicons.org/confluence/172B4D' },
-  { name: 'Agile Development', category: 'Version Control & Project Management', icon: 'https://cdn.simpleicons.org/jira/0052CC' },
+  // Architecture & Process
+  { name: 'Microservices', category: 'Architecture & Process', icon: 'https://cdn.simpleicons.org/kubernetes/326CE5' },
+  { name: 'Monolithic Architecture', category: 'Architecture & Process', icon: 'https://cdn.simpleicons.org/serverfault/555555' },
+  { name: 'Database Design', category: 'Architecture & Process', icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
+  { name: 'Agile Development', category: 'Architecture & Process', icon: 'https://cdn.simpleicons.org/jira/0052CC' },
+  { name: 'Jira', category: 'Architecture & Process', icon: 'https://cdn.simpleicons.org/jira/0052CC' },
+  { name: 'Confluence', category: 'Architecture & Process', icon: 'https://cdn.simpleicons.org/confluence/172B4D' },
+  { name: 'DevStride', category: 'Architecture & Process', icon: '/DevStride.svg' },
+  { name: 'Spec-Driven Development', category: 'Architecture & Process' },
 ];
 
 export const EXPERIENCE: Experience[] = [
